@@ -36,7 +36,7 @@ jobs:
           npm init -y
           npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor/app@6 @capacitor/filesystem@6 @capacitor/share@6
           npx cap telemetry off || true
-          npx cap init "Ammonium" com.konkur.amm --web-dir www
+          npx cap init "I.W.M.M" com.konkur.amm --web-dir www
           npx cap add android
           python3 - <<'PY'
           import json
@@ -69,11 +69,11 @@ jobs:
           cd "$APP/android"
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
-          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/ammonium.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/iwmm.apk"
 
       - name: Publish the APK as a release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="apk-$(date +%Y%m%d-%H%M)"
-          gh release create "$TAG" ammonium.apk --title "Ammonium APK" --notes "Android APK build" --target "$GITHUB_SHA"
+          gh release create "$TAG" iwmm.apk --title "I.W.M.M APK" --notes "Android APK build" --target "$GITHUB_SHA"
